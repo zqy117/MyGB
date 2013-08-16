@@ -1,0 +1,26 @@
+HKCR
+{
+	BFEntity.1 = s 'BaseEntity Class'
+	{
+		CLSID = s '{09F234C9-8261-4007-AF1E-BBD78250E9DC}'
+	}
+	BFEntity = s 'BaseEntity Class'
+	{		
+		CurVer = s 'BFEntity.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {09F234C9-8261-4007-AF1E-BBD78250E9DC} = s 'BaseEntity Class'
+		{
+			ProgID = s 'BFEntity.1'
+			VersionIndependentProgID = s 'BFEntity'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{309E3D3E-3343-4EA2-B42A-F9B287D83F73}'
+			Version = s '1.0'
+		}
+	}
+}

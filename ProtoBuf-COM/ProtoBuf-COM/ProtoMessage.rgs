@@ -1,0 +1,26 @@
+HKCR
+{
+	ParentMessage.1 = s 'ProtoMessage Class'
+	{
+		CLSID = s '{91B58975-47C6-49BB-9627-3AB04509D5FF}'
+	}
+	ParentMessage = s 'ProtoMessage Class'
+	{		
+		CurVer = s 'ParentMessage.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {91B58975-47C6-49BB-9627-3AB04509D5FF} = s 'ProtoMessage Class'
+		{
+			ProgID = s 'ParentMessage.1'
+			VersionIndependentProgID = s 'ParentMessage'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{309E3D3E-3343-4EA2-B42A-F9B287D83F73}'
+			Version = s '1.0'
+		}
+	}
+}

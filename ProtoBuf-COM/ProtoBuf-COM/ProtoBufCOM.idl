@@ -1,0 +1,101 @@
+// ProtoBufCOM.idl : ProtoBuf-COM 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(ProtoBufCOM.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,	
+	pointer_default(unique)
+]
+interface IComponentRegistrar : IDispatch
+{
+	[id(1)]	HRESULT Attach([in] BSTR bstrPath);
+	[id(2)]	HRESULT RegisterAll();
+	[id(3)]	HRESULT UnregisterAll();
+	[id(4)]	HRESULT GetComponents([out] SAFEARRAY(BSTR)* pbstrCLSIDs, [out] SAFEARRAY(BSTR)* pbstrDescriptions);
+	[id(5)]	HRESULT RegisterComponent([in] BSTR bstrCLSID);
+	[id(6)] HRESULT UnregisterComponent([in] BSTR bstrCLSID);
+};
+
+[
+	object,
+	uuid(E90E69EC-6BA1-411C-8565-BB4A0E59F6A3),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IProtoMessage : IDispatch{
+	[propget, id(1)] HRESULT Name([out, retval] BSTR* pVal);
+	[propput, id(1)] HRESULT Name([in] BSTR newVal);
+	[propget, id(2)] HRESULT ID([out, retval] LONG* pVal);
+	[propput, id(2)] HRESULT ID([in] LONG newVal);
+	[propget, id(3)] HRESULT Email([out, retval] BSTR* pVal);
+	[propput, id(3)] HRESULT Email([in] BSTR newVal);
+};
+
+[
+	object,
+	uuid(BD2C60F0-EAF6-48D3-ABAA-B64BB208F92D),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IProtoBuf : IDispatch{
+	[id(1)] HRESULT Serialize([in] IProtoMessage* pMessage, [in] BSTR path, [out,retval]VARIANT_BOOL* result);
+	//[id(2)] HRESULT Deserialize([in] LONG para1,[in] LONG para2,[out,retval] LONG* result);
+};
+
+[
+	object,
+	uuid(071F215C-9413-4E11-A531-666B64C230CE),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IBaseEntity : IDispatch{
+};
+[
+	uuid(309E3D3E-3343-4EA2-B42A-F9B287D83F73),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a,"{CE54CFDA-5C62-4815-931C-0FD40BD393A7}")
+]
+library ProtoBufCOMLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(CE54CFDA-5C62-4815-931C-0FD40BD393A7)		
+	]
+	coclass CompReg
+	{
+		[default] interface IComponentRegistrar;
+	};
+	[
+		uuid(0C54EE33-9453-4C61-B066-D68372B68271)		
+	]
+	coclass ProtoBuf
+	{
+		[default] interface IProtoBuf;
+	};
+	[
+		uuid(91B58975-47C6-49BB-9627-3AB04509D5FF)		
+	]
+	coclass ProtoMessage
+	{
+		[default] interface IProtoMessage;
+	};
+	[
+		uuid(09F234C9-8261-4007-AF1E-BBD78250E9DC)		
+	]
+	coclass BaseEntity
+	{
+		[default] interface IBaseEntity;
+	};
+};
+

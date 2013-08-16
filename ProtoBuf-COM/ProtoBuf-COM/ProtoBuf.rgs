@@ -1,0 +1,26 @@
+HKCR
+{
+	ProtoBufCOM.1 = s 'ProtoBuf Class'
+	{
+		CLSID = s '{0C54EE33-9453-4C61-B066-D68372B68271}'
+	}
+	ProtoBufCOM = s 'ProtoBuf Class'
+	{		
+		CurVer = s 'ProtoBufCOM.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0C54EE33-9453-4C61-B066-D68372B68271} = s 'ProtoBuf Class'
+		{
+			ProgID = s 'ProtoBufCOM.1'
+			VersionIndependentProgID = s 'ProtoBufCOM'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{309E3D3E-3343-4EA2-B42A-F9B287D83F73}'
+			Version = s '1.0'
+		}
+	}
+}
